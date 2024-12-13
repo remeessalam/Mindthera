@@ -304,7 +304,7 @@ header div#logo {
 }
 
 header div#logo img{
-  width: 100%;
+  width: 7rem;
 }
 
 header .logo-2 {
@@ -313,6 +313,8 @@ header .logo-2 {
 
 header .logo-scroll {
   display: none;
+  width: 7rem;
+
 }
 
 header .logo,
@@ -409,6 +411,7 @@ header.smaller #topbar.topbar-dark a {
 
 header .logo-mobile {
   display: none;
+  width: 5rem !important;
 }
 
 
@@ -417,10 +420,12 @@ header.smaller.scroll-light {
 }
 
 header.scroll-light .logo-scroll{
+  width: 7rem;
   display: none;
 }
 
 header.smaller.scroll-light .logo-main{
+  width: 7rem;
   display: none;
 }
 
