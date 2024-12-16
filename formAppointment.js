@@ -5,14 +5,26 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const values = {
+      service: document.getElementById("service").value,
+      date: document.querySelector("#date input").value,
+      time: document.getElementById("time").value,
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
       phone: document.getElementById("phone").value,
       message: document.getElementById("message").value,
     };
 
-    const requiredFields = ["name", "email", "phone", "message"];
-    const emptyFields = requiredFields.filter((field) => !values[field].trim());
+    const requiredFields = [
+      "service",
+      "date",
+      "time",
+      "name",
+      "email",
+      "phone",
+    ];
+    const emptyFields = requiredFields.filter(
+      (field) => !values[field]?.trim()
+    );
 
     if (emptyFields.length > 0) {
       emptyFields.forEach((field) => {
@@ -26,11 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.value = "Sending...";
     submitButton.disabled = true;
 
-    const emailBody = `Name: ${values.name}\n\nEmail: ${values.email}\n\nPhone: ${values.phone}\n\nMessage:\n${values.message}`;
+    const emailBody = `Service: ${values.service}\n\nDate: ${values.date}\n\nTime: ${values.time}\n\nName: ${values.name}\n\nEmail: ${values.email}\n\nPhone: ${values.phone}\n\nMessage:\n${values.message}`;
 
     const payload = {
       to: "therapy.org.in@gmail.com",
-      subject: "You have a new message from Therapy.org.in",
+      subject: "New Appointment Request From Therapy.org.in",
       body: emailBody,
     };
 
@@ -45,11 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (response.ok) {
-        alert("Email sent successfully");
+        alert("Appointment request sent successfully");
+        // Reset form fields
         contactForm.reset();
       } else {
         const errorData = await response.json();
-        alert(errorData.message || "Failed to send email");
+        alert(errorData.message || "Failed to send appointment request");
       }
     } catch (error) {
       alert("An error occurred. Please try again.");
